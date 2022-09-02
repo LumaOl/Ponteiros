@@ -1,1 +1,51 @@
+#include <stdlib.h>  //bibliotecas
+#include <stdio.h>
+#include <math.h>
 
+char situacao(float p1, float p2, float p3,int faltas, int aulas, float *media){    //funcao secundaria
+    float Nfaltas;    //declaracao de variaveis
+    char A, R, F;
+    
+    *media = (p1+p2+p3)/3.0;    //calcular media das notas
+    Nfaltas = ((faltas)/aulas)*100;     //calcular media numero de faltas
+    
+    if((Nfaltas <= 25) && (*media >= 6)){   //caso seja aprovado retornara A
+        return A;
+    }
+    else if((Nfaltas <= 25) && (*media <= 6)){      //caso seja reprove retornara R
+        return R;
+    }
+    else{     //caso seja reprovado por falta retornara F
+        return F;
+    }
+}
+
+int main(void){     //funcao prinncipal
+    float p1, p2, p3, media;    //declaracao de variaveis
+    int faltas, aulas;
+    char s;
+    
+    printf("Informe as notas do estudante: ");    //pedindo valores de nota
+    scanf("%f%f%f", &p1, &p2, &p3);   //leitura dos valores de nota
+    
+    printf("Informe o numero de aulas ministradas: \n");    //pedindo valores de aulas ministradas
+    scanf("%d", &aulas);    //leitura dos valores de aulas
+    
+    printf("Informe o numero de faltas: \n");   //pedindo valores de faltas
+    scanf("%d", &faltas);   //leitura dos valores de faltas
+    
+    s=situacao(p1, p2, p3, aulas, faltas, &media);    //abrir espaço na memoria
+    
+    switch(s){
+    case 'A':
+        printf("M = %.1f \t 'APROVADO'", media);    //mostrar media e aprovado
+        break;
+    case 'B':
+        printf("M = %.1f \t 'REPROVADO'", media);   //mostrar media e reprovado
+        break;
+    default:
+        printf("M = %.1f \t 'REPROVADO POR FALTA'", media);   //mostrar media e reprovado por falta
+    }
+    
+    return 0; //fim
+}
