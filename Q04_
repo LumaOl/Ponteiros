@@ -1,0 +1,36 @@
+//maria luma da silva oliveira
+
+#include <stdio.h>      //cabeçalho padrão de E/S.
+#include <stdlib.h>     //para uso de funções de alocação de memória, controle de processos, conversões e etc.
+#include <math.h>       //para operações matematicas.
+
+void calcula_hexagono(float l, float* area, float* perimetro) {     //função secundária
+ *area = 3 * pow(l, 2) * sqrt(3) / 2;       //pow = é uma função para obter a potência de um número.
+                                            //sqrt = retornar a raiz quadrada de um valor x.
+ *perimetro = 6 * l;
+}
+
+int main(){     //função principal.
+ float l, perimetro, area;          //declaração de variaveis do tipo real(float).
+
+ printf("Informe o numero de lados: ");         //imorimir mensagem para o usuario.
+ scanf("%f", &l);               //ler e guarda valores informados.
+ 
+//laço de repetição IF para que sse o usuario informar valores menores que -1 o programa mostre a mensagem e pare.
+ if (l <= -1) {             
+  printf("Digite um valor positivo!\n");          //mensagem que sera mostrada ao usuario.
+
+  system("pause");      //para os usuarios de Windows usam para pausar o programa.
+  exit(1);          //encerrar o processo imediatamente.
+ }
+
+ else { //instruções que o programa deve seguir.
+  calcula_hexagono(l, &area, &perimetro);          //chama a função que ira calcular os valores da area e perimetro.
+
+  printf("A = %.2f\n", area);           //mostrara resultado do calcula da Area.
+  printf("P = %.2f\n", perimetro);          //mostrara resultado do calcula do Perimetro.
+        //%.2f = mostrar apenas duas casa apos a virgula
+ } //fim da instrução
+
+ return 0;      //encerra a execução.
+}
